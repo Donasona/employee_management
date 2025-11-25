@@ -2,7 +2,6 @@ from django.shortcuts import render,redirect
 from django.views.generic import View
 from employee_app.forms import EmployeeForm
 from employee_app.models import Employee
-from django.shortcuts import get_object_or_404
 
 # Create your views here.
 
@@ -30,12 +29,14 @@ class EmployeeListView(View):
 
 class UpdateEmployeeView(View):
     def get(self, request, **kwargs):
-        employee = kwargs.get("pk")   
+        employee = kwargs.get("pk")  
+        employee = Employee.objects.get(id=employee) 
         form = EmployeeForm(instance=employee)
         return render(request, 'edit_employee.html', {'form': form})
 
     def post(self, request, **kwargs):
         employee = kwargs.get("pk")   
+        employee = Employee.objects.get(id=employee)
         form = EmployeeForm(request.POST, instance=employee)
 
         if form.is_valid():
@@ -53,7 +54,7 @@ class UpdateEmployeeView(View):
 class DeleteEmployeeView(View):
     def get(self, request, **kwargs):
         employee = kwargs.get("pk")  
-        employees =get_object_or_404(Employee,employee=employee,user=request.user)
+        employees = Employee.objects.get(id=employee)      
         employees.delete()
         return redirect('employee_list')
 
