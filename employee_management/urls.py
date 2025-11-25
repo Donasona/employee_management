@@ -23,7 +23,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('register/',RegisterView.as_view(),name="register"),
     path('login/',LoginView.as_view(),name="login"),
-    path('create/',Createemployee.as_view(),name='create'),
+    path('create/',Createemployee.as_view(),name="create_employee"),
+    path('list/',EmployeeListView.as_view(),name="employee_list"),
     path('edit/',UpdateEmployeeView.as_view(),name="edit"),
     path('delete/',DeleteEmployeeView.as_view(),name='delete'),
 ]

@@ -20,7 +20,6 @@ class Createemployee(View):
             )
             employee.save()
             return redirect('employee_list')
-
         return render(request, 'createemployee.html', {'form': form})
 
 class EmployeeListView(View):

@@ -29,7 +29,7 @@ class RegisterView(View):
                                  password=password,
                                  email=email)
         form = Userregisterform()
-        return redirect("create")
+        return redirect("login")
 
 class LoginView(View):
     def get(self,request):
@@ -42,5 +42,5 @@ class LoginView(View):
         user = authenticate(request,username=username,password=password)
         if user:
             login(request,user)
-            return redirect("register")
+            return redirect("employee_list")
         return render(request,"signin.html")
