@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,37 +7,50 @@
     <title>Employee List</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            margin: 40px;
-            background-color: #f5f5f5;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 40px;
+            background: linear-gradient(to right, #dfe9f3, #ffffff);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
         }
 
         h2 {
-            color: #333;
+            text-align: center;
+            color: #1e3a8a;
         }
 
-        a {
+        .add-btn {
+            display: inline-block;
+            margin-bottom: 20px;
             text-decoration: none;
             color: white;
             background-color: #28a745;
-            padding: 8px 12px;
-            border-radius: 4px;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background 0.3s;
         }
 
-        a:hover {
+        .add-btn:hover {
             background-color: #218838;
         }
 
         table {
             width: 100%;
-            border-collapse: collapse;
+            border-collapse: collapse;
             background-color: white;
-            margin-top: 20px;
         }
 
         th, td {
-            border: 1px solid #ddd;
-            padding: 10px;
+            padding: 12px;
+            border-bottom: 1px solid #dee2e6;
             text-align: center;
         }
 
@@ -46,51 +60,66 @@
         }
 
         tr:nth-child(even) {
-            background-color: #f2f2f2;
+            background-color: #f8f9fa;
         }
 
         .action-links a {
-            margin: 0 5px;
-            background-color: #007bff;
+            display: inline-block;
+            padding: 6px 10px;
+            margin: 0 3px;
+            color: white;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 14px;
         }
-.action-links a:last-child {
+
+        .action-links a.edit {
+            background-color: rgb(200, 200, 38);
+        }
+
+        .action-links a.edit:hover {
+            background-color: rgb(165, 165, 24);
+        }
+
+        .action-links a.delete {
             background-color: #dc3545;
         }
 
-        .action-links a:hover:last-child {
-            background-color: #c82333;
+        .action-links a.delete:hover {
+            background-color: #bd2130;
         }
     </style>
 </head>
 <body>
-    <h2>Employee List</h2>
+    <div class="container">
+        <h2>Employee List</h2>
 
-    <a href="{% url 'create_employee' %}">Add Employee</a>
+        <a href="{% url 'create_employee' %}" class="add-btn">+ Add Employee</a>
 
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>Base Salary</th>
-            <th>Bonus</th>
-            <th>Tax</th>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Base Salary</th>
+                <th>Bonus</th>
+                <th>Tax</th>
             <th>Net Salary</th>
-            <th>Actions</th>
-        </tr>
+                <th>Actions</th>
+            </tr>
 
-        {% for employee in employees %}
-        <tr>
-            <td>{{ employee.name }}</td>
-            <td>{{ employee.base_salary }}</td>
-            <td>{{ employee.bonus }}</td>
-            <td>{{ employee.tax }}</td>
-            <td>{{ employee.net_salary }}</td>
-            <td class="action-links">
-                <a href="{% url 'edit_employee' employee.id %}">Edit</a> 
-                <a href="{% url 'delete_employee' employee.id %}">Delete</a>
-            </td>
-        </tr>
-        {% endfor %}
-    </table>
-
+            {% for employee in employees %}
+            <tr>
+                <td>{{ employee.name }}</td>
+                <td>{{ employee.base_salary }}</td>
+                <td>{{ employee.bonus }}</td>
+                <td>{{ employee.tax }}</td>
+                <td>{{ employee.net_salary }}</td>
+                <td class="action-links">
+                    <a href="{% url 'edit_employee' employee.id %}" class="edit">Edit</a> 
+                    <a href="{% url 'delete_employee' employee.id %}" class="delete">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
 </body>
 </html>
