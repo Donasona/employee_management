@@ -4,12 +4,81 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+      <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #333;
+    }
+    .login-container {
+      background: white;
+      padding: 40px 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      width: 100%;
+      max-width: 600px;
+      text-align: center;
+    }
+    h2 {
+      margin-bottom: 30px;
+      color: #4a148c;
+      font-weight: 700;
+    }
+    form label {
+      display: block;
+      text-align: left;
+      margin-bottom: 6px;
+      font-weight: 600;
+      color: #555;
+    }
+    form input {
+      width: 100%;
+      padding: 12px 15px;
+      margin-bottom: 20px;
+      border: 1.8px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: border-color 0.3s ease;
+    }
+    form input:focus {
+        outline: none;
+      border-color: #764ba2;
+      box-shadow: 0 0 8px rgba(118, 75, 162, 0.5);
+    }
+    button {
+      width: 100%;
+      padding: 14px 0;
+      background-color: #764ba2;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #5b367f;
+    }
+  </style>
+
 </head>
 <body>
+      <div class="login-container">
+<h2>Employee Signup</h2>
     <form action="" method="post">
         {% csrf_token %}
         {{form}}
         <button type="submit">submit</button>
     </form>
+    </div>
 </body>
 </html>
